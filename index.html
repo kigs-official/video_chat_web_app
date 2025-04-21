@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Secure Video Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+  <script defer src="app.js"></script>
+  <style>
+    body { font-family: sans-serif; text-align: center; background: #f0f0f0; margin: 0; padding: 20px; }
+    video { width: 320px; margin: 10px; border: 2px solid #444; }
+    input, button, select { padding: 8px; margin: 5px; }
+    #login, #auth, #chat, #changePass { display: none; }
+    #chat { background: #fff; padding: 10px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+
+  <h2>Secure Chat with Face Login</h2>
+
+  <!-- Login -->
+  <div id="login">
+    <input type="text" id="user" placeholder="User ID"><br />
+    <input type="password" id="pass" placeholder="Password"><br />
+    <button onclick="login()">Login</button>
+    <button onclick="showChangePass()">Change Password</button>
+  </div>
+
+  <!-- Change Password -->
+  <div id="changePass">
+    <input type="text" id="newUser" placeholder="New User ID"><br />
+    <input type="password" id="newPass" placeholder="New Password"><br />
+    <button onclick="changeCredentials()">Save</button>
+    <button onclick="backToLogin()">Back</button>
+  </div>
+
+  <!-- Face Authentication -->
+  <div id="auth">
+    <video id="cam" autoplay muted></video><br />
+    <button onclick="registerFace()">Register Face</button>
+    <button onclick="authenticateFace()">Authenticate</button>
+  </div>
+
+  <!-- Chat -->
+  <div id="chat">
+    <video id="chatVideo" autoplay muted></video><br />
+    <button onclick="fullscreen()">Fullscreen</button>
+    <select onchange="setQuality(this.value)">
+      <option value="low">Low</option>
+      <option value="medium" selected>Medium</option>
+      <option value="high">High</option>
+    </select>
+  </div>
+
+</body>
+</html>
